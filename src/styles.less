@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+/** Box Model All HTML elements**/
+html{
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px */
+  padding: 1rem;
+  scroll-behavior: smooth;
+}
+*,*:before,*:after{
+  box-sizing: inherit;
+}
+
+body{
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+/** Globales **/
+h1,h2,h3{
+  /* font-family: 'Playfair Display', serif; */
+  margin: 0 0 3rem 0;
+  font-weight: 700;
+}
+h1{
+  font-size: 4rem;
+}
+h2{
+  font-size: 3rem;
+}
+h3{
+  font-size: 2rem;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.container{
+  max-width: 130rem;
+  margin: 0 auto;
+}
+
+img{
+ max-width: 100%;
+ display: block;
+}
+
+/* Utilidades */
+.text-center{
+  text-align: center;
+}
+
+.div-center-h{
+  margin: auto auto;
+}
+
+.max-width-30{
+  max-width: 30rem;
+}
+
+.img-full-cover{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 30% 70%;
+}
+
+.form-control,.custom-select{
+  font-size: 1.75rem;
+}

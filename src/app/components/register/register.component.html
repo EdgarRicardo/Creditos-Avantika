@@ -1,0 +1,79 @@
+<div class="container n-cliente">
+  <h1>{{title}}</h1>
+  <p>Crea un nuevo cliente para poder realizar transacciones para esa persona</p>
+
+  <br />
+  <div class="alert alert-warning" role="alert" *ngIf="statusReq == 2"><a class='close' data-dismiss='alert'
+      (click)="resetStatus()">×</a>
+    {{error}}
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="statusReq == 1"><a class='close' data-dismiss='alert'
+      (click)="resetStatus()">×</a>
+    Cliente registrado correctamente :)
+  </div>
+
+  <form class="" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div class="form-group">
+      <label for="name">Nombre Completo</label>
+      <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="cliente.nombre" required
+        pattern="([a-zA-Z]\s?)+">
+      <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+        Nombre Invalido
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="surname">ID</label>
+      <input type="text" name="id" class="form-control" #id="ngModel" [(ngModel)]="cliente.id" required pattern="[0-9]+">
+      <small *ngIf="!id.valid && id.touched" class="invalid-feedback d-block">
+        ID Numérico Positivo
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Direccion</label>
+      <input type="text" name="direccion" class="form-control" #direccion="ngModel" [(ngModel)]="cliente.direccion"
+        required pattern="^(?!\s).+">
+      <small *ngIf="!direccion.valid && direccion.touched" class="invalid-feedback d-block">
+        Direccion Invalida
+      </small>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="edad">Edad</label>
+      <input type="number" name="edad" min="18" max="100" class="form-control" #edad="ngModel" [(ngModel)]="cliente.edad" required>
+      <small *ngIf="!edad.valid && (edad.value<18 || edad.value>100)" class="invalid-feedback d-block">
+        Edad no valida, mayores de 18 años!
+      </small>
+    </div> -->
+
+    <div class="form-group">
+      <label for="edad">Edad</label>
+      <select class="custom-select" name="edad" #edad="ngModel" [(ngModel)]="cliente.edad" required>
+        <option *ngFor='let in of counter(82) ;let i = index' [value]="18+i">{{18+i}}</option>
+      </select>
+      <small *ngIf="!edad.valid || edad.value<18 || edad.value>100" class="invalid-feedback d-block">
+        Edad Invalida!
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="genero">Genero</label>
+      <select class="custom-select" name="genero" #genero="ngModel" [(ngModel)]="cliente.genero" required pattern="Masculino|Femenino">
+        <option value='' selected>--Genero--</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+      </select>
+      <small *ngIf="!genero.valid" class="invalid-feedback d-block">
+        Genero Invalido!
+      </small>
+    </div>
+
+
+    <div class="form-group text-right">
+      <input type="submit" class="btn btn-lg btn-primary" value="Submit" [disabled]="registerForm.invalid" />
+    </div>
+
+  </form>
+</div>

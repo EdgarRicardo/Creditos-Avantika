@@ -1,0 +1,36 @@
+<div class="container login">
+  <h1>{{title}}</h1>
+
+  <br/>
+  <div class="alert alert-warning" role="alert" *ngIf="statusReq == 2"><a class='close' data-dismiss='alert' (click)="resetStatus()">×</a>
+    Problema con la autentificación, intenta de nuevo!
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="statusReq == 1"><a class='close' data-dismiss='alert' (click)="resetStatus()">×</a>
+    Login successful!
+  </div>
+
+  <form class="" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="login.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+      <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+        Email no valido
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" #password="ngModel" [(ngModel)]="login.password" required>
+      <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">
+        Completa la contraseña
+      </small>
+    </div>
+
+    <div class="text-right">
+      <input type="submit" class="btn btn-lg btn-primary" value="Submit" [disabled]="loginForm.invalid"/>
+    </div>
+
+  </form>
+</div>

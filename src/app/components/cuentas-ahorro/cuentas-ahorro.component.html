@@ -1,0 +1,54 @@
+<section class="trans">
+  <div class="aux-div">
+    <h2>Apertura de Cuenta de Ahorro</h2>
+    <p>
+      Da de alta cuentas de ahorro llenando la siguiente información
+    </p>
+  </div>
+  <div class="img-full-cover trans-img"></div>
+</section>
+
+<div class="container">
+  <br />
+  <div class="alert alert-warning" role="alert" *ngIf="statusReq == 2"><a class='close' data-dismiss='alert'
+      (click)="resetStatus()">×</a>
+    Error al dar de alta la nueva cuenta de ahorro,cheque sus datos e intentelo nuevamente.
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="statusReq == 1"><a class='close' data-dismiss='alert'
+      (click)="resetStatus()">×</a>
+    Cuenta de Ahorro registrada correctamente :)
+  </div>
+
+  <form class="" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div class="form-group">
+      <label for="name">Número de Cuenta</label>
+      <input type="text" name="numero" class="form-control" #numero="ngModel" [(ngModel)]="cuenta.numeroCuenta" required pattern="\w+">
+      <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+        Numero de Cuenta Invalido
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="surname">Saldo</label>
+      <input type="text" name="saldo" class="form-control" #saldo="ngModel" [(ngModel)]="cuenta.saldo" required pattern="[0-9]+">
+      <small *ngIf="!saldo.valid && saldo.touched" class="invalid-feedback d-block">
+        Saldo Numérico Positivo
+      </small>
+    </div>
+
+    <div class="form-group" *ngIf="clientes">
+      <label for="genero">ID Cliente</label>
+      <select class="custom-select" name="idC" #idC="ngModel" [(ngModel)]="cuenta.idCliente" required>
+        <option value='-1' selected>--Id Cliente--</option>
+        <option *ngFor="let item of clientes" [value]="item.id">{{item.id}} : {{item.nombre}}</option>
+      </select>
+    </div>
+
+
+    <div class="form-group text-right">
+      <input type="submit" class="btn btn-lg btn-primary" value="Submit" [disabled]="registerForm.invalid" />
+    </div>
+
+  </form>
+</div>

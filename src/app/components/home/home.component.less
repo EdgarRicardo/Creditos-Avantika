@@ -1,0 +1,54 @@
+@au: "../../../assets/img/au.jpeg";
+@au2: "../../../assets/img/info_a.jpg";
+@main-blue: #037bc0;
+/* About Us*/
+.about-us{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.au-img{
+  background-image: url(@au);
+}
+
+.au-img2{
+  background-image: url(@au2);
+}
+
+.aux-div{
+  padding: 6rem 8rem;
+  color: white;
+  background-color: @main-blue;
+}
+
+/* Contacto */
+.contacto-img{
+  background-image: url("../../../assets/img/me.jpg");
+  width: auto;
+  height: 35rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0% 25%;
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.contacto{
+  margin: 5rem auto;
+}
+
+.contacto-info{
+  display: grid;
+  justify-content: center;
+  p{
+    display: block;
+    text-align: center;
+    padding: 2rem;
+    font-size: 2rem;
+    margin-top: 0;
+  }
+  p:hover{
+  background-color: @main-blue;
+  color: white;
+  border-radius: 0 0 1rem 1rem;
+  }
+}

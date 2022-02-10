@@ -1,0 +1,46 @@
+<section class="trans">
+  <div class="aux-div">
+    <h2>Transacciones: {{tipo}}</h2>
+    <p>
+      Ingresa la información para realizar el {{tipo}}
+    </p>
+  </div>
+  <div class="img-full-cover trans-img"></div>
+</section>
+
+<div class="container n-cliente">
+  <br />
+  <div class="alert alert-warning" role="alert" *ngIf="statusReq == 2"><a class='close' data-dismiss='alert'
+      (click)="resetStatus()">×</a>
+    Error al dar realizar el {{tipo}},cheque sus datos e intentelo nuevamente.
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="statusReq == 1"><a class='close' data-dismiss='alert'
+      (click)="resetStatus()">×</a>
+    {{tipo}} hecho correctamente :)
+  </div>
+
+  <form class="" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div class="form-group">
+      <label for="surname">Monto</label>
+      <input type="text" name="monto" class="form-control" #monto="ngModel" [(ngModel)]="transaccion.monto" required pattern="[0-9]+">
+      <small *ngIf="!monto.valid && monto.touched" class="invalid-feedback d-block">
+        Monto debe ser positivo
+      </small>
+    </div>
+
+    <div class="form-group" *ngIf="cuentas">
+      <label for="genero">Numero de Cuenta</label>
+      <select class="custom-select" name="cuenta" #cuenta="ngModel" [(ngModel)]="transaccion.numeroCuenta" required>
+        <option value='' selected>--Número de Cuenta--</option>
+        <option *ngFor="let item of cuentas" [value]="item.numeroCuenta">{{item.numeroCuenta}}</option>
+      </select>
+    </div>
+
+
+    <div class="form-group text-right">
+      <input type="submit" class="btn btn-lg btn-primary" value="Submit" [disabled]="registerForm.invalid" />
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,27 @@
+<section class="consultas">
+  <div class="img-full-cover consultas-img"></div>
+  <div class="aux-div">
+    <h2>Consultas de {{tipo}}</h2>
+    <p>
+      Aqui podras ver toda la información refrente a tus {{tipo}}
+    </p>
+  </div>
+</section>
+
+<section class="contenidos" *ngIf="consulta">
+  <div class="card" *ngFor="let item of consulta | keyvalue;let idx = index">
+    <div class="card-header" data-toggle="collapse" [attr.data-target]="'#seccion' + idx" aria-expanded="true" [attr.aria-controls]="'seccion' + idx">
+      <h3>
+        {{idx}}. {{item.key}}
+      </h3>
+    </div>
+    <div [id]="'seccion' + idx" class="collapse">
+      <div [id]="'data' + idx" class="container">
+        <div *ngFor="let att of item.value | keyvalue" class="text-center">
+          <b>{{att.key}}</b> : {{att.value}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
